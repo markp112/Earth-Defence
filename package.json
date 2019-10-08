@@ -1,0 +1,11 @@
+{
+
+  "scripts": {
+    "build-css": "sass .:.",
+    "build": "yarn build-css"
+  },
+
+  "devDependencies": {
+    "sass": "^1.23.0"
+  }
+}

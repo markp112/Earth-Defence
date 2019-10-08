@@ -1,0 +1,167 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: 0;
+}
+
+
+body {
+    background-image: url("/assets/images/space.jpg");
+    background-position: center;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+#aliens {
+    display: grid;
+    grid-template-columns: 10vw 80vw 10vw;
+    grid-template-rows: 30vh 18vh 18vh;
+    grid-row-gap: 20px;
+    width: 100vw;
+    justify-content: center;
+    align-content: center;
+
+    grid-template-areas:
+        ". mothership ."
+        ". bombers ."
+        ". fighters ."
+        ". . .";
+
+    #mothership {
+        grid-area: mothership;
+        width: 150px;
+        position: relative;
+        padding: 10px;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+
+        img {
+            width: 150px;
+            height: 100px;
+        }
+
+        span {
+            color: white;
+            position: absolute;
+            top: 20px;
+            left: 70px;
+            display: inline-block;
+            width: 20px;
+        }
+    }
+
+    #bombers {
+        grid-area: bombers;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+
+        .wrapper {
+            position: relative;
+            height: 100px;
+            width: 75px;
+            
+            img {
+                height: 100px;
+                width: 75px;
+            }
+
+            span {
+                color: white;
+                position: absolute;
+                top: 5px;
+                left: 27px;
+                display: inline-block;
+                width: 20px;
+            }
+        }
+    }
+
+    #fighters {
+        grid-area: fighters;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+
+        .wrapper {
+            position: relative;
+            height: 50px;
+            width: 40px;
+
+            img {
+            height: 50px;
+            width: 40px;
+            align-self: center;
+            }
+
+            span {
+            color: white;
+            position: absolute;
+            top: 27px;
+            left: 13px;
+            display: inline-block;
+            width: 20px;
+            }
+        }
+    }
+}
+
+#player {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    img {
+        width: 100px;
+        height: 125px;
+    }
+}
+
+#winning-message {
+    display: inline;
+    position: fixed;
+    z-index: 1;
+    left:  0.15*(100vw);
+    top: 0.1*(100vh);
+    width: 70%;
+    height: 80%;
+    overflow: auto;
+
+    #game-over {
+        font-size: 60px;
+        text-align: center;
+        color: whitesmoke;
+    }
+
+    #message {
+        font-size: 20px;
+        text-align: center;
+        color: whitesmoke;
+    }
+
+    #play-again {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        border:1px solid red;
+        width:100%;
+        
+        input [type=button] {
+            width: 60px;
+            height: 30px;
+            
+        }
+    }
+}
+
+.visible {
+    visibility: visible;
+    opacity: 1;
+    transition: opacity 2s linear;
+}
+.hidden {
+    visibility: hidden;
+    opacity: 0;
+    transition: visibility 0s 2s, opacity 2s linear;
+}

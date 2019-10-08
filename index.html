@@ -1,44 +1,101 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-      <!-- jquery library -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <!-- game -->
-    <script src="app.js"></script>
-    <!-- styles -->
-    <link rel="stylesheet" href="main.css">
-    <title>Earth Defence</title>
-</head>
-<body>
-    <section id="aliens">
-        <div id="mothership"></div>
-        <div id="bombers">
-            <span class="bomber"></span>
-            <span class="bomber"></span>
-            <span class="bomber"></span>
-            <span class="bomber"></span>
-            <span class="bomber"></span>
-        </div>
-        <div id="fighters">
-            <span class="fighter"></span>
-            <span class="fighter"></span>
-            <span class="fighter"></span>
-            <span class="fighter"></span>
-            <span class="fighter"></span>
-            <span class="fighter"></span>
-            <span class="fighter"></span>
-            <span class="fighter"></span>
-        </div>
-    </section>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+        <!-- jquery library -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <!-- game -->
+        <script src="app.js"></script>
+        <!-- styles -->
+        <link rel="stylesheet" href="styles/styles.css" />
+        <title>Earth Defence</title>
+    </head>
+    <body>
+        <section id="aliens">
+            <div id="mothership">
+                <img src="./assets/images/mothership.png" alt="" />
+                <span></span>
+            </div>
+            <div id="bombers">
+                <div class="wrapper">
+                    <img class="bomber" src="./assets/images/bomber.png" />
+                    <span></span>
+                </div>
+                <div class="wrapper">
+                    <img class="bomber" src="./assets/images/bomber.png" />
+                    <span></span>
+                </div>
+                <div class="wrapper">
+                    <img class="bomber" src="./assets/images/bomber.png" />
+                    <span></span>
+                </div>
+                <div class="wrapper">
+                    <img class="bomber" src="./assets/images/bomber.png" />
+                    <span></span>
+                </div>
+                <div class="wrapper">
+                    <img class="bomber" src="./assets/images/bomber.png" />
+                    <span></span>
+                </div>
+            </div>
+            <div id="fighters">
+                <div class="wrapper">
+                    <img class="fighter" src="./assets/images/fighter.png" />
+                    <span></span>
+                </div>
+                <div class="wrapper">
+                    <img class="fighter" src="./assets/images/fighter.png" />
+                    <span></span>
+                </div>
+                <div class="wrapper">
+                    <img class="fighter" src="./assets/images/fighter.png" />
+                    <span></span>
+                </div>
+                <div class="wrapper">
+                    <img class="fighter" src="./assets/images/fighter.png" />
+                    <span></span>
+                </div>
+                <div class="wrapper">
+                    <img class="fighter" src="./assets/images/fighter.png" />
+                    <span></span>
+                </div>
+                <div class="wrapper">
+                    <img class="fighter" src="./assets/images/fighter.png" />
+                    <span></span>
+                </div>
+                <div class="wrapper">
+                    <img class="fighter" src="./assets/images/fighter.png" />
+                    <span></span>
+                </div>
+            </div>
+        </section>
 
-    <section id="player">
-        <div class="player" onclick="fireLasers()"></div>
+        <section id="player" onclick="fireLasers()">
+            <img
+                class="player"
+                src="assets/images/playersShip.png"
+            />
+        </section>
 
-    </section>
+        <section id="winning-message">
+            <p id="game-over">
+                GAME OVER
+            </p>
+            <p id='message'>
+                Congratulations you saved earth from the invasion, you will go down in the annuals of
+                history as the planets great saviour.
+                Well done commander !
+            </p>
 
-    <section id="winning-message"><p>Congratulations commander you saved planet Earth we are for ever in your debt</p></section>
-</body>
+            <div id="play-again">
+                <p>Another invasion fleet is looming are you ready to play again commander?</p>
+                <p>
+                    <input type="button" value="Yes" onclick="startGame()">
+                    <input type="button" value="No" onclick="endGame()">
+                </p>
+            </div>
+        </section>
+    </body>
 </html>

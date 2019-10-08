@@ -2,7 +2,7 @@
   margin: 0;
   padding: 0;
   -webkit-box-sizing: 0;
-          box-sizing: 0;
+  box-sizing: 0;
 }
 
 body {
@@ -17,15 +17,17 @@ body {
   display: -ms-grid;
   display: grid;
   -ms-grid-columns: 10vw 80vw 10vw;
-      grid-template-columns: 10vw 80vw 10vw;
+  grid-template-columns: 10vw 80vw 10vw;
   -ms-grid-rows: 30vh 18vh 18vh;
-      grid-template-rows: 30vh 18vh 18vh;
+  grid-template-rows: 30vh 18vh 18vh;
   grid-row-gap: 20px;
   width: 100vw;
   -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-      grid-template-areas: ". mothership ." ". bombers ." ". fighters ." ". . .";
+  -ms-flex-pack: center;
+  justify-content: center;
+  -ms-flex-line-pack: center;
+  align-content: center;
+  grid-template-areas: ". mothership ." ". bombers ." ". fighters ." ". . .";
 }
 
 #aliens #mothership {
@@ -35,15 +37,21 @@ body {
   width: 150px;
   position: relative;
   padding: 10px;
-  border: 1px solid red;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
 }
 
 #aliens #mothership img {
   width: 150px;
   height: 100px;
-  -ms-flex-item-align: center;
-      -ms-grid-row-align: center;
-      align-self: center;
 }
 
 #aliens #mothership span {
@@ -64,11 +72,11 @@ body {
   display: flex;
   -webkit-box-orient: horizontal;
   -webkit-box-direction: normal;
-      -ms-flex-direction: row;
-          flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
   -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
 }
 
 #aliens #bombers .wrapper {
@@ -100,11 +108,11 @@ body {
   display: flex;
   -webkit-box-orient: horizontal;
   -webkit-box-direction: normal;
-      -ms-flex-direction: row;
-          flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
   -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
 }
 
 #aliens #fighters .wrapper {
@@ -117,8 +125,8 @@ body {
   height: 50px;
   width: 40px;
   -ms-flex-item-align: center;
-      -ms-grid-row-align: center;
-      align-self: center;
+  -ms-grid-row-align: center;
+  align-self: center;
 }
 
 #aliens #fighters .wrapper span {
@@ -136,15 +144,75 @@ body {
   display: flex;
   -webkit-box-orient: horizontal;
   -webkit-box-direction: normal;
-      -ms-flex-direction: row;
-          flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
   -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
 }
 
 #player img {
   width: 100px;
   height: 125px;
 }
-/*# sourceMappingURL=main.css.map */
+
+#winning-message {
+  display: inline;
+  position: fixed;
+  z-index: 1;
+  left: 15vw;
+  top: 10vh;
+  width: 70%;
+  height: 80%;
+  overflow: auto;
+}
+
+#winning-message #game-over {
+  font-size: 60px;
+  text-align: center;
+  color: whitesmoke;
+}
+
+#winning-message #message {
+  font-size: 20px;
+  text-align: center;
+  color: whitesmoke;
+}
+
+#winning-message #play-again {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  border: 1px solid red;
+  width: 100%;
+}
+
+#winning-message #play-again input [type=button] {
+  width: 60px;
+  height: 30px;
+}
+
+.visible {
+  visibility: visible;
+  opacity: 1;
+  -webkit-transition: opacity 2s linear;
+  transition: opacity 2s linear;
+}
+
+.hidden {
+  visibility: hidden;
+  opacity: 0;
+  -webkit-transition: visibility 0s 2s, opacity 2s linear;
+  transition: visibility 0s 2s, opacity 2s linear;
+}
+
+/*# sourceMappingURL=styles.css.map */
+
+/*# sourceMappingURL=styles.css.map */

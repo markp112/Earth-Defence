@@ -1,4 +1,10 @@
+//constant definitions for repeated text
+const MotherShip = "Mothership";
+const Bomber = "Bomber";
+const Fighter = "Fighter";
+
 class Alien {
+    isDead = false;
     constructor(type, hitPoints, damage, hasDiedGraphic, isLivingGraphic) {
         this.type = type;
         this.hitPoints = hitPoints;
@@ -9,7 +15,7 @@ class Alien {
 
     takesHit() {
         this.hitPoints =
-            (this.hitPoints -= this.damage) < 0
+            (this.hitPoints -= this.damage) <= 0
                 ? 0
                 : (this.hitPoints -= this.damage);
         this.isDead = this.hitPoints === 0;
@@ -54,55 +60,58 @@ class AlienIvasion {
     }
 
     isQueenDead() {
-        return this._invasionFleet.filter(invader.type === MOTHERSHIP).isDead;
+        const mothership = this._invasionFleet.filter(
+            invader => invader.type === "Mothership"
+        );
+
+        return mothership[0].isDead;
     }
 }
 
-const MotherShip = "Mothership";
-const Bomber = "Bomber";
-const Fighter = "Fighter";
-
 const initInvasionFleet = () => {
     let invasionFleet = new AlienIvasion();
-    let mothership = new Alien(MotherShip, 80, 7, "XxXxX", "T--VoVoV--T");
+    let mothership = new Alien(MotherShip, 80, 7);
     invasionFleet.addToFleet(mothership);
 
     for (bombers = 0; bombers < 6; bombers++) {
-        let bomber = new Alien(Bomber, 68, 10, "XxxXXxxX", "+--OO--+");
+        let bomber = new Alien(
+            Bomber,
+            68,
+            10
+    
+        );
         invasionFleet.addToFleet(bomber);
     }
 
     for (fighters = 0; fighters < 8; fighters++) {
-        let fighter = new Alien(Fighter, 60, 12, "xxXXxx", "--OO--");
+        let fighter = new Alien(Fighter, 60, 12);
         invasionFleet.addToFleet(fighter);
     }
-
-    console.log("TCL: initInvasionFleet ->  invasionFleet", invasionFleet);
     return invasionFleet;
 };
 
 const displayMothership = mothership => {
-    $("#mothership").text(
-        mothership[0].isLivingGraphic + mothership[0].hitPoints
+    $("#mothership span").empty();
+    $("#mothership span").append(
+        mothership[0].hitPoints
     );
 };
 
 const displayBombers = bombers => {
     $("#bombers span").empty();
     $("#bombers span").each((index, spanTag) => {
-        console.log("TCL: spanTag", spanTag);
-
         const isDead = bombers[index].isDead;
         const hitPoints = bombers[index].hitPoints;
         const bomberImg = isDead
             ? bombers[index].hasDiedGraphic
             : bombers[index].isLivingGraphic;
-        spanTag.append(bomberImg + " " + hitPoints);
+        spanTag.append(hitPoints);
     });
 };
 
 const displayFighters = fighters => {
     $("#fighters span").empty();
+
     $("#fighters span").each((index, spanTag) => {
         const isDead = fighters[index].isDead;
         const hitPoints = fighters[index].hitPoints;
@@ -110,12 +119,11 @@ const displayFighters = fighters => {
             ? fighters[index].hasDiedGraphic
             : fighters[index].isLivingGraphic;
 
-        spanTag.append(fighterImg + " " + hitPoints);
+        spanTag.append(hitPoints);
     });
 };
 
 const displayPlayer = () => {
-    $("#player div").append("^^^");
 };
 
 const displayInvasionFleet = invasionFleet => {
@@ -126,24 +134,37 @@ const displayInvasionFleet = invasionFleet => {
     displayFighters(invasionFleet.filter(ship => ship.type === Fighter));
 };
 
+const displayGameOver = () => {
+    console.log("End of Game");
+    $("#winning-message").removeClass("hidden");
+    $("#winning-message").addClass("visible");
+};
+
 const fireLasers = () => {
+console.log("TCL: fireLasers -> fireLasers", fireLasers)
+        
     spaceArmada.damageInvader();
-    
+
     displayInvasionFleet(spaceArmada.invasionFleet);
-    if(spaceArmada.filter(alien => alien.type=MotherShip)){
+    console.log(
+        "TCL: fireLasers -> spaceArmada.isQueenDead",
+        spaceArmada.isQueenDead()
+    );
+
+    if (spaceArmada.isQueenDead()) {
         displayGameOver();
-        endGame()
+        // endGame();
     }
-
-
-    
 };
 
 let spaceArmada;
 
-$(document).ready(() => {
+const startGame = () =>{
     spaceArmada = initInvasionFleet();
-
+    $("#winning-message").addClass("hidden");
     displayInvasionFleet(spaceArmada.invasionFleet);
     displayPlayer();
+}
+$(document).ready(() => {
+    startGame();
 });
