@@ -2,7 +2,7 @@
   margin: 0;
   padding: 0;
   -webkit-box-sizing: 0;
-  box-sizing: 0;
+          box-sizing: 0;
 }
 
 body {
@@ -17,17 +17,15 @@ body {
   display: -ms-grid;
   display: grid;
   -ms-grid-columns: 10vw 80vw 10vw;
-  grid-template-columns: 10vw 80vw 10vw;
+      grid-template-columns: 10vw 80vw 10vw;
   -ms-grid-rows: 30vh 18vh 18vh;
-  grid-template-rows: 30vh 18vh 18vh;
+      grid-template-rows: 30vh 18vh 18vh;
   grid-row-gap: 20px;
   width: 100vw;
   -webkit-box-pack: center;
-  -ms-flex-pack: center;
-  justify-content: center;
-  -ms-flex-line-pack: center;
-  align-content: center;
-  grid-template-areas: ". mothership ." ". bombers ." ". fighters ." ". . .";
+      -ms-flex-pack: center;
+          justify-content: center;
+      grid-template-areas: ". mothership ." ". bombers ." ". fighters ." ". . .";
 }
 
 #aliens #mothership {
@@ -35,6 +33,7 @@ body {
   -ms-grid-column: 2;
   grid-area: mothership;
   width: 150px;
+  justify-self: center;
   position: relative;
   padding: 10px;
   display: -webkit-box;
@@ -42,11 +41,11 @@ body {
   display: flex;
   -webkit-box-orient: horizontal;
   -webkit-box-direction: normal;
-  -ms-flex-direction: row;
-  flex-direction: row;
+      -ms-flex-direction: row;
+          flex-direction: row;
   -webkit-box-pack: center;
-  -ms-flex-pack: center;
-  justify-content: center;
+      -ms-flex-pack: center;
+          justify-content: center;
 }
 
 #aliens #mothership img {
@@ -72,11 +71,11 @@ body {
   display: flex;
   -webkit-box-orient: horizontal;
   -webkit-box-direction: normal;
-  -ms-flex-direction: row;
-  flex-direction: row;
+      -ms-flex-direction: row;
+          flex-direction: row;
   -webkit-box-pack: center;
-  -ms-flex-pack: center;
-  justify-content: center;
+      -ms-flex-pack: center;
+          justify-content: center;
 }
 
 #aliens #bombers .wrapper {
@@ -90,7 +89,7 @@ body {
   width: 75px;
 }
 
-#aliens #bombers .wrapper span {
+#aliens #bombers .wrapper .hit-points {
   color: white;
   position: absolute;
   top: 5px;
@@ -108,11 +107,11 @@ body {
   display: flex;
   -webkit-box-orient: horizontal;
   -webkit-box-direction: normal;
-  -ms-flex-direction: row;
-  flex-direction: row;
+      -ms-flex-direction: row;
+          flex-direction: row;
   -webkit-box-pack: center;
-  -ms-flex-pack: center;
-  justify-content: center;
+      -ms-flex-pack: center;
+          justify-content: center;
 }
 
 #aliens #fighters .wrapper {
@@ -125,8 +124,8 @@ body {
   height: 50px;
   width: 40px;
   -ms-flex-item-align: center;
-  -ms-grid-row-align: center;
-  align-self: center;
+      -ms-grid-row-align: center;
+      align-self: center;
 }
 
 #aliens #fighters .wrapper span {
@@ -138,17 +137,30 @@ body {
   width: 20px;
 }
 
+.hit {
+  visibility: visible;
+  opacity: 1;
+}
+
+.hit {
+  height: 20px;
+  width: 20px;
+  position: absolute;
+  top: 10px;
+  left: 10px;
+}
+
 #player {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   -webkit-box-orient: horizontal;
   -webkit-box-direction: normal;
-  -ms-flex-direction: row;
-  flex-direction: row;
+      -ms-flex-direction: row;
+          flex-direction: row;
   -webkit-box-pack: center;
-  -ms-flex-pack: center;
-  justify-content: center;
+      -ms-flex-pack: center;
+          justify-content: center;
 }
 
 #player img {
@@ -157,7 +169,7 @@ body {
 }
 
 #winning-message {
-  display: inline;
+  display: inline-block;
   position: fixed;
   z-index: 1;
   left: 15vw;
@@ -180,21 +192,30 @@ body {
 }
 
 #winning-message #play-again {
+  margin-top: 20px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-orient: horizontal;
+  -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
-  -ms-flex-direction: row;
-  flex-direction: row;
-  -webkit-box-pack: center;
-  -ms-flex-pack: center;
-  justify-content: center;
-  border: 1px solid red;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  height: 100px;
   width: 100%;
 }
 
-#winning-message #play-again input [type=button] {
+#winning-message #play-again p {
+  color: whitesmoke;
+}
+
+#winning-message #play-again p input[type=button] {
+  border: 1px solid blue;
   width: 60px;
   height: 30px;
 }
@@ -212,7 +233,4 @@ body {
   -webkit-transition: visibility 0s 2s, opacity 2s linear;
   transition: visibility 0s 2s, opacity 2s linear;
 }
-
-/*# sourceMappingURL=styles.css.map */
-
 /*# sourceMappingURL=styles.css.map */

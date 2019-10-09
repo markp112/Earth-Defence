@@ -5,6 +5,7 @@ const Fighter = "Fighter";
 
 class Alien {
     isDead = false;
+    isHit = false;
     constructor(type, hitPoints, damage, hasDiedGraphic, isLivingGraphic) {
         this.type = type;
         this.hitPoints = hitPoints;
@@ -14,11 +15,10 @@ class Alien {
     }
 
     takesHit() {
-        this.hitPoints =
-            (this.hitPoints -= this.damage) <= 0
-                ? 0
-                : (this.hitPoints -= this.damage);
+        const hpRemaining = this.hitPoints - this.damage;
+        this.hitPoints = hpRemaining <= 0? 0 : hpRemaining;
         this.isDead = this.hitPoints === 0;
+        this.isHit = true;
     }
 }
 
@@ -51,7 +51,12 @@ class AlienIvasion {
         this._invasionFleet.push(invader);
     }
 
+    clearHits() {
+        this._invasionFleet.forEach(invader => invader.isHit = false);
+    }
+
     damageInvader() {
+        this.clearHits();
         const aliensLeft = this._invasionFleet.filter(
             invader => !invader.isDead
         ).length;
@@ -59,11 +64,14 @@ class AlienIvasion {
         this._invasionFleet[index].takesHit();
     }
 
-    isQueenDead() {
+    mothershipHasDied () {
+        this.invasionFleet.forEach(alien => alien.hitPoints = 0);
+    }
+
+    isMothershipDead() {
         const mothership = this._invasionFleet.filter(
             invader => invader.type === "Mothership"
         );
-
         return mothership[0].isDead;
     }
 }
@@ -78,7 +86,6 @@ const initInvasionFleet = () => {
             Bomber,
             68,
             10
-    
         );
         invasionFleet.addToFleet(bomber);
     }
@@ -99,13 +106,19 @@ const displayMothership = mothership => {
 
 const displayBombers = bombers => {
     $("#bombers span").empty();
-    $("#bombers span").each((index, spanTag) => {
+    $("#bombers .wrapper .hit").each((index, element) => { 
+        if (bombers[index].isHit) $(element).html('<img class="explosion" src="./assets/images/explosion.png" />');
+    });
+
+    $("#bombers div .hit-points").each((index, spanTag) => {
         const isDead = bombers[index].isDead;
         const hitPoints = bombers[index].hitPoints;
         const bomberImg = isDead
             ? bombers[index].hasDiedGraphic
             : bombers[index].isLivingGraphic;
-        spanTag.append(hitPoints);
+        spanTag.append(hitPoints);    
+
+        
     });
 };
 
@@ -135,25 +148,19 @@ const displayInvasionFleet = invasionFleet => {
 };
 
 const displayGameOver = () => {
-    console.log("End of Game");
     $("#winning-message").removeClass("hidden");
     $("#winning-message").addClass("visible");
 };
 
 const fireLasers = () => {
-console.log("TCL: fireLasers -> fireLasers", fireLasers)
-        
     spaceArmada.damageInvader();
 
     displayInvasionFleet(spaceArmada.invasionFleet);
-    console.log(
-        "TCL: fireLasers -> spaceArmada.isQueenDead",
-        spaceArmada.isQueenDead()
-    );
-
-    if (spaceArmada.isQueenDead()) {
+    if (spaceArmada.isMothershipDead()) {
+        spaceArmada.mothershipHasDied();
+        displayInvasionFleet(spaceArmada.invasionFleet);
         displayGameOver();
-        // endGame();
+       // endGame();
     }
 };
 
