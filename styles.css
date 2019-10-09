@@ -6,7 +6,7 @@
 }
 
 body {
-  background-image: url("../assets/images/space.jpg");
+  background-image: url("./assets/images/space.jpg");
   background-position: center;
   background-attachment: fixed;
   background-repeat: no-repeat;
