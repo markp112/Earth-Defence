@@ -8,7 +8,7 @@ Create a simple text only game with a single button that hits a random alien fro
 The game is over when all aliens have died. You should be able to start a new game once the game is over. 
 You should be able to solve this in under 150 lines including comments and any more than that is a sign you have over complicated the problem. You can use basic html and css to tidy up the output, but the solution should be simple text and a button rather than any styled UI. 
 
-You start the game with the following wasps. 
+You start the game with the following aliens. 
 
 ## 1 x Mothership
 * 80 Hit Points  
