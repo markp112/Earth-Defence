@@ -60,7 +60,7 @@ class AlienIvasion {
         const aliensLeft = this._invasionFleet.filter(
             invader => !invader.isDead
         ).length;
-        const index = Math.floor(Math.random() * aliensLeft);
+        const index = Math.round(Math.random() * aliensLeft);
         this._invasionFleet[index].takesHit();
     }
 
@@ -70,7 +70,7 @@ class AlienIvasion {
 
     isMothershipDead() {
         const mothership = this._invasionFleet.filter(
-            invader => invader.type === "Mothership"
+            invader => invader.type === MotherShip
         );
         return mothership[0].isDead;
     }
@@ -94,13 +94,15 @@ const initInvasionFleet = () => {
         let fighter = new Alien(Fighter, 60, 12);
         invasionFleet.addToFleet(fighter);
     }
+    console.log("TCL: initInvasionFleet -> invasionFleet", invasionFleet)
     return invasionFleet;
 };
 
-const displayMothership = mothership => {
-    $("#mothership span").empty();
-    if(mothership.isHit) $("#mothership .hit").html('<img class="explosion" src="./assets/images/explosion3.png" />');
-    $("#mothership .hit-points").append(mothership[0].hitPoints);
+const displayMothership = alien => {
+    const mothership = alien[0];
+    $("#mothership span").empty();    
+    if(mothership.isHit) $("#mothership .hit").html('<img class="explosion" src="./assets/images/explosion.png" />');
+    $("#mothership .hit-points").append(mothership.hitPoints);
 };
 
 const displayBombers = bombers => {
@@ -128,7 +130,7 @@ const displayFighters = fighters => {
 
     });
     
-    $("#fighters .hit-points").each((index, spanTag) => {
+    $("#fighters div .hit-points").each((index, spanTag) => {
         const isDead = fighters[index].isDead;
         const hitPoints = fighters[index].hitPoints;
         const fighterImg = isDead
@@ -143,7 +145,7 @@ const displayPlayer = () => {
 
 const displayInvasionFleet = invasionFleet => {
     displayMothership(
-        invasionFleet.filter(mothership => mothership.type === MotherShip)
+        invasionFleet.filter(ship => ship.type === MotherShip)
     );
     displayBombers(invasionFleet.filter(ship => ship.type === Bomber));
     displayFighters(invasionFleet.filter(ship => ship.type === Fighter));
