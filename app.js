@@ -99,9 +99,8 @@ const initInvasionFleet = () => {
 
 const displayMothership = mothership => {
     $("#mothership span").empty();
-    $("#mothership span").append(
-        mothership[0].hitPoints
-    );
+    if(mothership.isHit) $("#mothership .hit").html('<img class="explosion" src="./assets/images/explosion3.png" />');
+    $("#mothership .hit-points").append(mothership[0].hitPoints);
 };
 
 const displayBombers = bombers => {
@@ -124,14 +123,17 @@ const displayBombers = bombers => {
 
 const displayFighters = fighters => {
     $("#fighters span").empty();
+    $("#fighters .wrapper .hit").each((index,element) => {
+        if(fighters[index].isHit) $(element).html('<img class="explosion" src="./assets/images/explosion2.png" />');
 
-    $("#fighters span").each((index, spanTag) => {
+    });
+    
+    $("#fighters .hit-points").each((index, spanTag) => {
         const isDead = fighters[index].isDead;
         const hitPoints = fighters[index].hitPoints;
         const fighterImg = isDead
             ? fighters[index].hasDiedGraphic
             : fighters[index].isLivingGraphic;
-
         spanTag.append(hitPoints);
     });
 };
